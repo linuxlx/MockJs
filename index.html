@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+</body>
+<script src="jquery.min.js"></script>
+<script>
+	$.ajax({
+		url:'http://localhost:8080/login',
+		data:{
+			user:'lisi',
+			pass:123456
+		},
+		datatype:'json',
+		type:'post',
+		success:function(data){
+			console.log(data)
+		},
+		erreo:function(err){
+			console.log(err)
+		}
+	})
+</script>
+</html>

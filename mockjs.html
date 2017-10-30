@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<!-- <html ng-app="myApp"> -->
+	<html>
+<head>
+	<meta charset="UTF-8">
+	<title>mock</title>
+</head>
+<!-- <body ng-controller="siteCtrl"> -->
+<body >
+    <span>显示列表：<span>
+	<ul class="demo"></ul>
+	<!-- {{names}} -->
+<!-- （必选）加载 Mock -->
+<script src="jquery.min.js"></script>
+<script src="mock.js"></script>
+<script src="../libs/angular.min.js"></script>
+<script>
+
+// 使用 Mock
+Mock.mock('Event/wap/test', {/*地址任意*/
+    'result|5': [{
+        'id|+1': 1,
+        'email': '@EMAIL',
+        'name':'@cname'
+    }]
+});
+
+
+// var app = angular.module('myApp', []);
+    
+// app.controller('siteCtrl', function($scope, $http) {
+//     $http({
+//         method: 'post',
+//         url: 'Event/wap/test'
+//     }).then(function successCallback(response) {
+//             $scope.names = response.data;
+//         }, function errorCallback(response) {
+//             // 请求失败执行代码
+//     });
+  
+// });
+
+
+$.ajax({
+    url: 'Event/wap/test',
+    dataType: 'json',
+    success: function(data, status, jqXHR) {
+    	var content = "";
+    	if(data !=null){
+    		for(i=0;i<data.result.length;i++){
+    			content +='<li>\
+						<span>'+data.result[i].id+'、'+data.result[i].name+'的邮箱是：'+data.result[i].email+'</span>\
+    			</li>';
+    		}
+    		$(".demo").html(content);
+    	}
+    }
+});
+
+</script>
+</body>
+</html>
